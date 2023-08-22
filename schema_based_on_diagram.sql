@@ -1,4 +1,4 @@
-CREATE DATABASE clinic
+CREATE DATABASE clinic;
 
 CREATE TABLE patients(
   id INT PRIMARY KEY,
@@ -41,3 +41,9 @@ CREATE TABLE medical_histories_treatments (
   medical_histories_id INT REFERENCES medical_histories(id),
   treatment_id INT REFERENCES treatments(id)
 );
+
+
+ALTER TABLE medical_histories ADD CONSTRAINT pk_patient_id FOREIGN KEY (patient_id) REFERENCES patients(id);
+ALTER TABLE invoices ADD CONSTRAINT pk_medical_history_id FOREIGN KEY (medical_history_id) REFERENCES medical_histories(id);
+ALTER TABLE invoice_item ADD CONSTRAINT pk_invoice_id FOREIGN KEY (invoice_id) REFERENCES invoices(id);
+ALTER TABLE invoice_item ADD CONSTRAINT pk_treatment_id FOREIGN KEY (treatment_id) REFERENCES treatments(id);
